@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: ROUTE_CONFIGS['home'].path, component: MainLayoutComponent, children: [
       {path: ROUTE_CONFIGS['home'].path, redirectTo: '/', pathMatch: 'full'},
       {path: ROUTE_CONFIGS['home'].path, component: HomePageComponent},
-      {path: 'post/:id', component: PostPageComponent},
+      {path: ROUTE_CONFIGS['postPage'].path, component: PostPageComponent},
     ]}
 ];
 
@@ -18,9 +18,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-
-}
+export class AppRoutingModule { }
 
 
 
