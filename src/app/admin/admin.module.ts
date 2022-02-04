@@ -20,8 +20,7 @@ import { DashboardPageComponent } from './dashboard-page/dashboard-page.componen
   imports: [
     CommonModule,
     adminRoutingModule,
-  ]
+  ],
 })
 export class AdminModule {
 }
-
