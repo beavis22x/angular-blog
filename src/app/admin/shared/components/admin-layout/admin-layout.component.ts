@@ -10,17 +10,17 @@ import { ROUTE_CONFIGS } from "../../../../utils/constants/route.consts";
 })
 export class AdminLayoutComponent {
 
-  dashLink: any[] = [
+  public dashLink: (string | undefined) [] = [
     ROUTE_CONFIGS['adminPage'].fullpath,
     ROUTE_CONFIGS['adminDashboard'].path
   ];
 
-  createLink: any[] = [
+  public createLink: (string | undefined) [] = [
     ROUTE_CONFIGS['adminPage'].fullpath,
     ROUTE_CONFIGS['adminCreate'].path
   ];
 
-  loginLink: any[] = [
+  public loginLink: (string | undefined) [] = [
     ROUTE_CONFIGS['adminPage'].fullpath,
     ROUTE_CONFIGS['adminLogin'].path
   ];

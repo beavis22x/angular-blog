@@ -1,20 +1,20 @@
-<nav class='navbar bg-primary'>
+<nav class="navbar bg-primary">
   <h1>
-    <a routerLink='/'>Angular Admin</a>
+    <a routerLink="/">Angular Admin</a>
   </h1>
   <ul>
-    <li routerLinkActive='active'>
-      <a [routerLink]='dashLink'>Главная</a>
+    <li routerLinkActive="active">
+      <a [routerLink]="dashLink">Главная</a>
     </li>
-    <li routerLinkActive='active'>
-      <a [routerLink]='createLink'>Создать</a>
+    <li routerLinkActive="active">
+      <a [routerLink]="createLink">Создать</a>
     </li>
     <li>
-      <a href='#' (click)='logout($event)'>Выйти</a>
+      <a href="#" (click)="logout($event)">Выйти</a>
     </li>
   </ul>
 </nav>
 
-<div class='container'>
+<div class="container">
   <router-outlet></router-outlet>
 </div>
