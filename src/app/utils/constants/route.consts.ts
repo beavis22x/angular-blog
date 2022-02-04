@@ -15,8 +15,40 @@ const adminPage: RouteConfig = {
   path: 'admin'
 }
 
+const adminHome: RouteConfig = {
+  name: 'admin-home',
+  path: '',
+  fullpath: 'admin'
+}
+
+const adminLogin: RouteConfig = {
+  name: 'admin-login',
+  path: 'login',
+  fullpath: '/admin/login'
+}
+
+const adminDashboard: RouteConfig = {
+  name: 'admin-dashboard',
+  path: 'dashboard'
+}
+
+const adminCreate: RouteConfig = {
+  name: 'admin-create',
+  path: 'create'
+}
+
+const adminEdit: RouteConfig = {
+  name: 'admin-edit',
+  path: 'post/:id/edit'
+}
+
 export const ROUTE_CONFIGS: RouteConfigs = {
   home,
   postPage,
   adminPage,
+  adminHome,
+  adminLogin,
+  adminDashboard,
+  adminCreate,
+  adminEdit,
 }
