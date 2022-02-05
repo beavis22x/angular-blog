@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { adminRoutingModule } from './admin-routing.module';
 
@@ -20,6 +21,8 @@ import { DashboardPageComponent } from './dashboard-page/dashboard-page.componen
   imports: [
     CommonModule,
     adminRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class AdminModule {
