@@ -28,7 +28,7 @@ export class AdminLayoutComponent {
   constructor(private router: Router) {
   }
 
-  logout(event: Event) {
+  public logout(event: Event): void {
     event.preventDefault();
     this.router.navigate(this.loginLink);
   }
