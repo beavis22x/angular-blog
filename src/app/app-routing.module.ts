@@ -9,14 +9,14 @@ import { ROUTE_CONFIGS } from './utils/constants/route.consts';
 
 const routes: Routes = [
   {
-    path: ROUTE_CONFIGS['home'].path, component: MainLayoutComponent, children: [
-      {path: ROUTE_CONFIGS['home'].path, redirectTo: '/', pathMatch: 'full'},
-      {path: ROUTE_CONFIGS['home'].path, component: HomePageComponent},
-      {path: ROUTE_CONFIGS['postPage'].path, component: PostPageComponent},
+    path: ROUTE_CONFIGS.home.path, component: MainLayoutComponent, children: [
+      {path: ROUTE_CONFIGS.home.path, redirectTo: '/', pathMatch: 'full'},
+      {path: ROUTE_CONFIGS.home.path, component: HomePageComponent},
+      {path: ROUTE_CONFIGS.postPage.path, component: PostPageComponent},
     ]
   },
   {
-    path: ROUTE_CONFIGS['adminPage'].path,
+    path: ROUTE_CONFIGS.adminPage.path,
     loadChildren: () => import('./admin/admin.module').then(mod => mod.AdminModule)
   }
 ];
@@ -27,8 +27,7 @@ const routes: Routes = [
   })],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule { }
 
 
 

@@ -1,3 +1,20 @@
-<h1>admin-layout works!</h1>
+<nav class="navbar bg-primary">
+  <h1>
+    <a routerLink="/">Angular Admin</a>
+  </h1>
+  <ul>
+    <li routerLinkActive="active">
+      <a [routerLink]="[routeConfig.adminPage.fullpath, routeConfig.adminDashboard.path]">Главная</a>
+    </li>
+    <li routerLinkActive="active">
+      <a [routerLink]="[routeConfig.adminPage.fullpath, routeConfig.adminCreate.path]">Создать</a>
+    </li>
+    <li>
+      <a href="#" (click)="logout($event)">Выйти</a>
+    </li>
+  </ul>
+</nav>
 
-<router-outlet></router-outlet>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

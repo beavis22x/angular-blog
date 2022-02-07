@@ -12,7 +12,8 @@ const postPage: RouteConfig = {
 
 const adminPage: RouteConfig = {
   name: 'admin-page',
-  path: 'admin'
+  path: 'admin',
+  fullpath: '/admin'
 }
 
 const adminHome: RouteConfig = {
