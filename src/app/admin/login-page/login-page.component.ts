@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 
 import { AuthService } from '../shared/auth.service';
-import { User } from '../../utils/interfaces/ login.interfaces';
+import { User } from '../../utils/interfaces/admin-panel.interfaces';
 import { RouteConfigs } from '../../utils/interfaces/route.interfaces';
 import { ROUTE_CONFIGS } from '../../utils/constants/route.consts';
 

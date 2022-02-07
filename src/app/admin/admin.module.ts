@@ -20,7 +20,7 @@ import { AuthGuardService } from './shared/auth.guard.service';
     LoginPageComponent,
     CreatePageComponent,
     EditPageComponent,
-    DashboardPageComponent
+    DashboardPageComponent,
   ],
   imports: [
     CommonModule,
