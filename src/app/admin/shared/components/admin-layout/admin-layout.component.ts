@@ -1,35 +1,27 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { RouteConfigs } from '../../../../utils/interfaces/route.interfaces';
 
 import { ROUTE_CONFIGS } from '../../../../utils/constants/route.consts';
 
 @Component({
   selector: 'app-admin-layout',
   templateUrl: './admin-layout.component.html',
-  styleUrls: ['./admin-layout.component.scss']
+  styleUrls: ['./admin-layout.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminLayoutComponent {
-
-  public dashLink: (string | undefined)[] = [
-    ROUTE_CONFIGS.adminPage.fullpath,
-    ROUTE_CONFIGS.adminDashboard.path
-  ];
-
-  public createLink: (string | undefined)[] = [
-    ROUTE_CONFIGS.adminPage.fullpath,
-    ROUTE_CONFIGS.adminCreate.path
-  ];
-
-  public loginLink: (string | undefined)[] = [
-    ROUTE_CONFIGS.adminPage.fullpath,
-    ROUTE_CONFIGS.adminLogin.path
-  ];
+  public routeConfig: RouteConfigs = ROUTE_CONFIGS;
 
   constructor(private router: Router) {
   }
 
-  public logout(event: Event):void {
+  public logout(event: Event): void {
     event.preventDefault();
-    this.router.navigate(this.loginLink);
+    this.router.navigate([
+      this.routeConfig.adminPage.fullpath,
+      this.routeConfig.adminLogin.path
+    ]);
   }
 }
