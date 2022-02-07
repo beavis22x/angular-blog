@@ -19,7 +19,7 @@ export class LoginPageComponent implements OnInit {
   public submitted!: boolean;
 
   constructor(
-    private auth: AuthService,
+    public auth: AuthService,
     private router: Router
     ) { }
 
@@ -38,7 +38,6 @@ export class LoginPageComponent implements OnInit {
 
   public submit(): void {
     if (this.form.invalid) return
-
     this.submitted = true;
     const user: User = {
       email:this.form?.value?.email,
@@ -47,8 +46,10 @@ export class LoginPageComponent implements OnInit {
 
     this.auth.logIn(user).subscribe(() => {
       this.form.reset();
-      this.router.navigate([this.routeConfig.adminPage.fullpath, this.routeConfig.adminDashboard.path])
+      this.router.navigate([this.routeConfig.adminPage.fullpath, this.routeConfig.adminDashboard.path]);
+      this.submitted = false;
+    }, () => {
+      this.submitted = false;
     })
-    this.submitted = false;
   }
 }
