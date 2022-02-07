@@ -6,7 +6,8 @@ import { User } from '../../utils/interfaces/ login.interfaces';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  styleUrls: ['./login-page.component.scss'],
+  changeDetection: 0,
 })
 export class LoginPageComponent implements OnInit {
 
