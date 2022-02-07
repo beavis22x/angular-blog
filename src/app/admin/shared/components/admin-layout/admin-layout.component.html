@@ -4,16 +4,10 @@
   </h1>
   <ul>
     <li routerLinkActive="active">
-      <a [routerLink]="[
-    routeConfig.adminPage.fullpath,
-    routeConfig.adminDashboard.path
-  ]">Главная</a>
+      <a [routerLink]="[routeConfig.adminPage.fullpath, routeConfig.adminDashboard.path]">Главная</a>
     </li>
     <li routerLinkActive="active">
-      <a [routerLink]="[
-    routeConfig.adminPage.fullpath,
-    routeConfig.adminCreate.path
-  ]">Создать</a>
+      <a [routerLink]="[routeConfig.adminPage.fullpath, routeConfig.adminCreate.path]">Создать</a>
     </li>
     <li>
       <a href="#" (click)="logout($event)">Выйти</a>

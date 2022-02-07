@@ -12,8 +12,7 @@ import { ROUTE_CONFIGS } from '../../../../utils/constants/route.consts';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminLayoutComponent {
-
-  public routeConfig:RouteConfigs = ROUTE_CONFIGS;
+  public routeConfig: RouteConfigs = ROUTE_CONFIGS;
 
   constructor(private router: Router) {
   }
