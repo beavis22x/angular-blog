@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 
 import { AuthService } from '../shared/auth.service';
 import { User } from '../../utils/interfaces/ login.interfaces';
@@ -17,13 +17,20 @@ export class LoginPageComponent implements OnInit {
   public form!: FormGroup;
   public routeConfig: RouteConfigs = ROUTE_CONFIGS;
   public submitted!: boolean;
+  public message!: string;
 
   constructor(
     public auth: AuthService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
     ) { }
 
   ngOnInit() {
+    this.route.queryParams.subscribe((params: Params) => {
+      if(params['loginAgain']) {
+        this.message = 'Залогиньтесь, пожайлуста'
+      }
+    })
     this.form = new FormGroup({
       email: new FormControl (null, [
         Validators.required,

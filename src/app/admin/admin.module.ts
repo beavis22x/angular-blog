@@ -12,6 +12,7 @@ import { EditPageComponent } from './edit-page/edit-page.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 
 import { AuthService } from './shared/auth.service';
+import { AuthGuardService } from './shared/auth.guard.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { AuthService } from './shared/auth.service';
     SharedModule,
     ReactiveFormsModule,
   ],
-  providers: [AuthService]
+  providers: [AuthService, AuthGuardService]
 })
 export class AdminModule {
 }
