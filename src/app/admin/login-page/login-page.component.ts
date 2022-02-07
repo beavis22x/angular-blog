@@ -16,6 +16,7 @@ import { ROUTE_CONFIGS } from '../../utils/constants/route.consts';
 export class LoginPageComponent implements OnInit {
   public form!: FormGroup;
   public routeConfig: RouteConfigs = ROUTE_CONFIGS;
+  public submitted!: boolean;
 
   constructor(
     private auth: AuthService,
@@ -38,14 +39,16 @@ export class LoginPageComponent implements OnInit {
   public submit(): void {
     if (this.form.invalid) return
 
+    this.submitted = true;
     const user: User = {
       email:this.form?.value?.email,
-      password:this.form?.value?.password
+      password:this.form?.value?.password,
     }
 
     this.auth.logIn(user).subscribe(() => {
       this.form.reset();
       this.router.navigate([this.routeConfig.adminPage.fullpath, this.routeConfig.adminDashboard.path])
     })
+    this.submitted = false;
   }
 }
