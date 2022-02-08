@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import {Post} from "../../utils/interfaces/admin-panel.interfaces";
+import { Post } from "../../utils/interfaces/admin-panel.interfaces";
 
 @Component({
   selector: 'app-create-page',
@@ -20,7 +20,7 @@ export class CreatePageComponent implements OnInit{
     })
   }
 
-  submit() {
+  public submit() {
     if (this.form.invalid) {
       return
     }
@@ -31,7 +31,6 @@ export class CreatePageComponent implements OnInit{
       text: this.form.value.text,
       date: new Date()
     }
-    console.log(post)
   }
 }
 
