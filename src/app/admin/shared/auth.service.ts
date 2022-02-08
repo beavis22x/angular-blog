@@ -8,7 +8,7 @@ import { User } from '../../utils/interfaces/admin-panel.interfaces';
 import { environment } from '../../../environments/environment';
 import { EMAIL_NOT_FOUND, INVALID_PASSWORD } from '../../utils/constants/error.consts';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class AuthService {
   public error$: Subject<string> = new Subject<string>();
 
