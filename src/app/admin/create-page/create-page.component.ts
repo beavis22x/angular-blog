@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Post } from "../../utils/interfaces/admin-panel.interfaces";
+import { PostsService } from '../../shared/components/posts.service';
 
 @Component({
   selector: 'app-create-page',
@@ -11,6 +12,9 @@ import { Post } from "../../utils/interfaces/admin-panel.interfaces";
 })
 export class CreatePageComponent implements OnInit{
   public form!: FormGroup;
+
+  constructor(private postsService: PostsService) {
+  }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -31,6 +35,10 @@ export class CreatePageComponent implements OnInit{
       text: this.form.value.text,
       date: new Date()
     }
+
+    this.postsService.create(post).subscribe(() => {
+      this.form.reset();
+    })
   }
 }
 
