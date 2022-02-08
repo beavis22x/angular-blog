@@ -13,7 +13,7 @@ import { PostPageComponent } from './post-page/post-page.component';
 import { PostComponent } from './shared/components/post/post.component';
 import { AuthInterceptor } from './shared/auth.interceptor';
 
-const INTERCEPROT_PROVIDER: Provider = {
+const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
   multi: true,
   useClass: AuthInterceptor
@@ -33,7 +33,7 @@ const INTERCEPROT_PROVIDER: Provider = {
     SharedModule,
     AppRoutingModule,
   ],
-  providers: [INTERCEPROT_PROVIDER],
+  providers: [INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
