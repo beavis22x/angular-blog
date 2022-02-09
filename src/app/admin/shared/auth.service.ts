@@ -20,6 +20,7 @@ export class AuthService {
 
     if(new Date() > expDate) {
       this.logOut();
+
       return null;
     }
 
@@ -38,7 +39,7 @@ export class AuthService {
     );
   }
 
-  public logOut() {
+  public logOut(): void {
     this.setToken(null);
   }
 
@@ -46,8 +47,8 @@ export class AuthService {
     return !!this.token;
   }
 
-   handleError(error: HttpErrorResponse): any {
-    const {message} = error.error.error;
+   public handleError(error: HttpErrorResponse): any {
+    const {message} = error?.error?.error;
 
      switch(message) {
        case INVALID_PASSWORD:
@@ -59,9 +60,10 @@ export class AuthService {
      }
   }
 
-  private setToken(response: any) {
+  private setToken(response: any): void {
     if(response) {
       const expiresDate = new Date(new Date().getTime() + Number(response.expiresIn) * 1000);
+
       localStorage.setItem('fb-token', response.idToken);
       localStorage.setItem('fb-token-expire', expiresDate.toString());
     } else {
