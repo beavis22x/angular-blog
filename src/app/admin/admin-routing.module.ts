@@ -8,7 +8,7 @@ import { CreatePageComponent } from './create-page/create-page.component';
 import { EditPageComponent } from './edit-page/edit-page.component';
 
 import { ROUTE_CONFIGS } from '../utils/constants/route.consts';
-import {AuthGuardService} from "./shared/auth.guard.service";
+import { AuthGuardService } from './shared/auth.guard.service';
 
 const routes: Routes = [
   {

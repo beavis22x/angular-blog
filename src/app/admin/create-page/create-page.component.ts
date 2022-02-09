@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { Post } from "../../utils/interfaces/admin-panel.interfaces";
+import { FormConfigs, Post } from '../../utils/interfaces/admin-panel.interfaces';
 import { PostsService } from '../../shared/components/posts.service';
+import { FIELD_FORM_CONSTS } from '../../utils/constants/form.consts';
 
 @Component({
   selector: 'app-create-page',
@@ -12,8 +13,9 @@ import { PostsService } from '../../shared/components/posts.service';
 })
 export class CreatePageComponent implements OnInit{
   public form!: FormGroup;
+  public fieldFormConsts: FormConfigs = FIELD_FORM_CONSTS;
 
-  constructor(private postsService: PostsService) {
+  constructor(private readonly postsService: PostsService) {
   }
 
   ngOnInit() {
@@ -24,10 +26,8 @@ export class CreatePageComponent implements OnInit{
     })
   }
 
-  public submit() {
-    if (this.form.invalid) {
-      return
-    }
+  public submit(): void {
+    if (this.form.invalid) { return }
 
     const post: Post = {
       title: this.form.value.title,
@@ -39,6 +39,10 @@ export class CreatePageComponent implements OnInit{
     this.postsService.create(post).subscribe(() => {
       this.form.reset();
     })
+  }
+
+  validCheck(fieldStr: string): boolean | undefined {
+    return (this.form.get(fieldStr)?.touched && this.form.get(fieldStr)?.invalid)
   }
 }
 

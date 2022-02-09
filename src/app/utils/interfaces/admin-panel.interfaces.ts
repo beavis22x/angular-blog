@@ -5,11 +5,11 @@ export interface User {
 }
 
 export interface Post {
-  id?: string
   title: string
   text: string
   author: string
   date: Date
+  id?: string
 }
 
 export interface FbAuthResponse {
@@ -19,4 +19,13 @@ export interface FbAuthResponse {
 
 export interface FbCreateResponse {
   name: string
+}
+
+export interface FormConfig {
+  name: string,
+  nameField?: string,
+}
+
+export interface FormConfigs {
+  [key: string]: FormConfig;
 }

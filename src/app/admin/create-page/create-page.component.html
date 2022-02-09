@@ -2,11 +2,10 @@
   <h1>Создание нового поста</h1>
 
   <div class="form-control"
-       [ngClass]="{invalid: form.get('title')?.touched && form.get('title')?.invalid}"
-  >
+       [ngClass]="{invalid: validCheck(fieldFormConsts.title.name)}">
     <label for="title">Название поста:</label>
     <input id="title" type="text" formControlName="title">
-    <div *ngIf="form.get('title')?.touched && form.get('title')?.invalid" class="validation">
+    <div *ngIf="validCheck(fieldFormConsts.title.name)" class="validation">
       <small *ngIf="form.get('title')?.errors?.required">
         Введите название поста
       </small>
@@ -19,11 +18,11 @@
   </div>
 
   <div class="form-control"
-       [ngClass]="{invalid: form.get('author')?.touched && form.get('author')?.invalid}"
+       [ngClass]="{invalid: validCheck(fieldFormConsts.author.name)}"
   >
     <label for="author">Автор поста:</label>
     <input id="author" type="text" formControlName="author">
-    <div *ngIf="form.get('author')?.touched && form.get('author')?.invalid" class="validation">
+    <div *ngIf="validCheck(fieldFormConsts.author.name)" class="validation">
       <small *ngIf="form.get('author')?.errors?.required">
         Введите автора поста
       </small>
@@ -32,6 +31,7 @@
 
   <button type="submit"
           class="btn btn-block btn-dark"
-          [disabled]="form.invalid"
-  >Создать пост</button>
+          [disabled]="form.invalid">
+    Создать пост
+  </button>
 </form>
