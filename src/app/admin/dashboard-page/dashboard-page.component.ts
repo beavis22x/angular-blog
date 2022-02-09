@@ -13,21 +13,30 @@ import { PostsService } from '../../shared/components/posts.service';
 export class DashboardPageComponent implements OnInit, OnDestroy{
   public posts!: Post[];
   public postsSub!: Subscription;
+  public deleteSub!: Subscription;
   public filterStr = '';
 
   constructor(private postsService: PostsService) { }
 
   ngOnInit(): void {
       this.postsSub = this.postsService.getAll().subscribe(posts => {
-        this.posts = posts;
+        return this.posts = posts;
       })
   }
 
-  public remove(id: any): void { }
+  public remove(id: any): void {
+    this.deleteSub = this.postsService.remove(id).subscribe(posts => {
+      this.posts = this.posts.filter(post => post.id != id)
+      console.log(this.posts)
+    })
+  }
 
   ngOnDestroy(): void {
     if (this.postsSub) {
       this.postsSub.unsubscribe()
+    }
+    if (this.deleteSub) {
+      this.deleteSub.unsubscribe()
     }
   }
 }
