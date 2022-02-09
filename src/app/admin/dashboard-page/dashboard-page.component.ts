@@ -13,13 +13,13 @@ import { PostsService } from '../../shared/components/posts.service';
 export class DashboardPageComponent implements OnInit, OnDestroy{
   public posts!: Post[];
   public postsSub!: Subscription;
+  public filterStr = '';
 
-  constructor(private postsService: PostsService) {
-  }
+  constructor(private postsService: PostsService) { }
 
   ngOnInit(): void {
       this.postsSub = this.postsService.getAll().subscribe(posts => {
-        this.posts = posts ;
+        this.posts = posts;
       })
   }
 
@@ -30,5 +30,4 @@ export class DashboardPageComponent implements OnInit, OnDestroy{
       this.postsSub.unsubscribe()
     }
   }
-
 }
