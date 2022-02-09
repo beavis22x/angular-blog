@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 
 import {AuthService} from './auth.service';
-import {ROUTE_CONFIGS} from "../../utils/constants/route.consts";
+import { ROUTE_CONFIGS } from '../../utils/constants/route.consts';
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
@@ -14,24 +14,27 @@ export class AuthGuardService implements CanActivate {
   ) {
   }
 
-  canActivate(
+  public  canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
     if (this.auth.isAuthenticated()) {
       return true;
     } else {
-      this.auth.logOut();
-      this.router.navigate([
-        ROUTE_CONFIGS.adminPage.fullpath,
-        ROUTE_CONFIGS.adminLogin.path
-      ], {
-        queryParams: {
-          loginAgain: true
-        }
-      })
+      this.redirect();
       return false;
     }
   }
 
+  private redirect(): void {
+    this.auth.logOut();
+    this.router.navigate([
+      ROUTE_CONFIGS.adminPage.fullpath,
+      ROUTE_CONFIGS.adminLogin.path
+    ], {
+      queryParams: {
+        loginAgain: true
+      }
+    })
+  }
 }
