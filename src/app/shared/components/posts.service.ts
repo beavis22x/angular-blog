@@ -8,7 +8,8 @@ import { environment } from '../../../environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class PostsService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   create(post: Post): Observable<Post> {
     return this.http.post(`${environment.fbDbUrl}/posts.json`, post)
@@ -21,13 +22,13 @@ export class PostsService {
       }))
   }
 
-  remove(id:string | undefined) {
+  remove(id: string | undefined) {
     return this.http.delete<void>(`${environment.fbDbUrl}/posts/${id}.json`)
   }
 
   getAll(): Observable<Post[]> {
     return this.http.get(`${environment.fbDbUrl}/posts.json`)
-      .pipe(map((response: {[key: string]: any}) => {
+      .pipe(map((response: {[key: string]: any }) => {
         return Object.keys(response)
           .map(key => ({
             ...response[key],
@@ -46,5 +47,9 @@ export class PostsService {
           date: new Date(post.date)
         }
       }))
+  }
+
+  update(post: Post): Observable<Post> {
+    return this.http.patch<Post>(`${environment.fbDbUrl}/posts/${post.id}.json`, post)
   }
 }
