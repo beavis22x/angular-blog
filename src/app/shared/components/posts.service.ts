@@ -21,7 +21,7 @@ export class PostsService {
       }))
   }
 
-  remove(id:string) {
+  remove(id:string | undefined) {
     return this.http.delete<void>(`${environment.fbDbUrl}/posts/${id}.json`)
   }
 

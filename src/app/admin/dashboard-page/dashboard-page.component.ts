@@ -30,7 +30,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy{
       })
   }
 
-  public remove(id: any): void {
+  public remove(id: string | undefined): void {
     this.deleteSub = this.postsService.remove(id).subscribe(posts => {
       this.posts = this.posts.filter(post => post.id != id)
       this.cd.markForCheck()
@@ -38,11 +38,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy(): void {
-    if (this.postsSub) {
-      this.postsSub.unsubscribe()
-    }
-    if (this.deleteSub) {
-      this.deleteSub.unsubscribe()
-    }
+      this.postsSub?.unsubscribe()
+      this.deleteSub?.unsubscribe()
   }
 }

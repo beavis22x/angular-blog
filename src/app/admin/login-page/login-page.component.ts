@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 
@@ -6,6 +6,7 @@ import { AuthService } from '../shared/auth.service';
 import { User } from '../../utils/interfaces/admin-panel.interfaces';
 import { RouteConfigs } from '../../utils/interfaces/route.interfaces';
 import { ROUTE_CONFIGS } from '../../utils/constants/route.consts';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login-page',
@@ -13,20 +14,21 @@ import { ROUTE_CONFIGS } from '../../utils/constants/route.consts';
   styleUrls: ['./login-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent implements OnInit, OnDestroy {
   public form!: FormGroup;
   public routeConfig: RouteConfigs = ROUTE_CONFIGS;
   public submitted!: boolean;
   public message!: string;
+  public subscriptions: Subscription = new Subscription();
 
   constructor(
     public auth: AuthService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
     ) { }
 
   ngOnInit() {
-    this.route.queryParams.subscribe((params: Params) => {
+    const validationSub$ = this.route.queryParams.subscribe((params: Params) => {
       if(params['loginAgain']) {
         this.message = 'Залогиньтесь, пожайлуста';
       } else if(params['authFailed']) {
@@ -43,22 +45,29 @@ export class LoginPageComponent implements OnInit {
         Validators.minLength(6
         )])
     })
+    this.subscriptions.add(validationSub$);
   }
 
   public submit(): void {
-    if (this.form.invalid) return
-    this.submitted = true;
+    if (this.form?.invalid) { return }
+
     const user: User = {
       email:this.form?.value?.email,
       password:this.form?.value?.password,
     }
 
-    this.auth.logIn(user).subscribe(() => {
+    this.submitted = true;
+    const validationSubmitSub$ = this.auth.logIn(user).subscribe(() => {
       this.form.reset();
       this.router.navigate([this.routeConfig.adminPage.fullpath, this.routeConfig.adminDashboard.path]);
       this.submitted = false;
     }, () => {
       this.submitted = false;
     })
+    this.subscriptions.add(validationSubmitSub$);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions?.unsubscribe();
   }
 }

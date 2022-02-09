@@ -48,7 +48,7 @@ export class CreatePageComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy() {
-    this.postCreateSub.unsubscribe();
+      this.postCreateSub?.unsubscribe();
   }
 
 }
