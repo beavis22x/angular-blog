@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { Post } from '../../utils/interfaces/admin-panel.interfaces';
 import { Subscription } from 'rxjs';
 
 import { PostsService } from '../../shared/components/posts.service';
