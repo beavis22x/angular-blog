@@ -2,12 +2,18 @@ import {RouteConfig, RouteConfigs} from '../interfaces/route.interfaces';
 
 const home: RouteConfig = {
   name: 'home',
-  path: ''
+  path: '',
+  fullpath: '/'
 }
 
 const postPage: RouteConfig = {
   name: 'post-page',
   path: 'post/:id'
+}
+
+const homePost: RouteConfig = {
+  name: 'home-post',
+  path: '/post'
 }
 
 const adminPage: RouteConfig = {
@@ -40,7 +46,18 @@ const adminCreate: RouteConfig = {
 
 const adminEdit: RouteConfig = {
   name: 'admin-edit',
-  path: 'post/:id/edit'
+  path: 'post/:id/edit',
+  fullpath: '/admin/post/:id/edit'
+}
+
+const plainAdminPost: RouteConfig = {
+  name: 'plain-admin-post',
+  path: 'post',
+}
+
+const plainAdminEdit: RouteConfig = {
+  name: 'plain-admin-edit',
+  path: 'edit',
 }
 
 export const ROUTE_CONFIGS: RouteConfigs = {
@@ -52,4 +69,7 @@ export const ROUTE_CONFIGS: RouteConfigs = {
   adminDashboard,
   adminCreate,
   adminEdit,
+  plainAdminPost,
+  plainAdminEdit,
+  homePost,
 }
