@@ -27,7 +27,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     public auth: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-  ) { }
+  ) {
+  }
 
   public ngOnInit(): void {
     this.initValidate();

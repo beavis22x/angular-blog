@@ -13,20 +13,22 @@ import { ROUTE_CONFIGS } from '../../utils/constants/route.consts';
   styleUrls: ['./dashboard-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DashboardPageComponent implements OnInit, OnDestroy{
+export class DashboardPageComponent implements OnInit, OnDestroy {
   public posts: Post[] = [];
   public postsSub!: Subscription;
   public deleteSub!: Subscription;
   public filterStr = '';
   public routeConfig: RouteConfigs = ROUTE_CONFIGS;
 
-  constructor(private readonly postsService: PostsService,
-              private cd: ChangeDetectorRef,
-              private alertService: AlertService
-  ) { }
+  constructor(
+    private readonly postsService: PostsService,
+    private cd: ChangeDetectorRef,
+    private alertService: AlertService
+  ) {
+  }
 
   public ngOnInit(): void {
-      this.postsInit();
+    this.postsInit();
   }
 
   private postsInit(): void {
@@ -46,7 +48,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy{
   }
 
   public ngOnDestroy(): void {
-      this.postsSub?.unsubscribe()
-      this.deleteSub?.unsubscribe()
+    this.postsSub?.unsubscribe()
+    this.deleteSub?.unsubscribe()
   }
 }

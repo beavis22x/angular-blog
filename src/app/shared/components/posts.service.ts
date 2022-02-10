@@ -6,7 +6,9 @@ import { map } from 'rxjs/operators';
 import { FbCreateResponse, Post } from '../../utils/interfaces/admin-panel.interfaces';
 import { environment } from '../../../environments/environment';
 
-@Injectable({providedIn: 'root'})
+@Injectable({
+  providedIn: 'root'
+})
 export class PostsService {
   constructor(private http: HttpClient) {
   }
