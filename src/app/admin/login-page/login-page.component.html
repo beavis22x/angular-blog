@@ -1,3 +1,54 @@
-<form action="#" class="card">
+<form [formGroup]="form" (ngSubmit)="submit()" class="card">
   <h2>Войти в админку</h2>
+
+  <div class="alert alert-danger" *ngIf="auth?.error$ | async as error">
+    {{ error }}
+  </div>
+  <div class="alert" *ngIf="message">
+    {{ message }}
+  </div>
+
+  <div
+    class="form-control"
+    [ngClass]="{invalid: checkValid(fieldFormConsts.email.name)}">
+    <label for="email">Email</label>
+    <input type="email" id="email" [formControlName]="fieldFormConsts.email.name">
+    <div
+      *ngIf="checkValid(fieldFormConsts.email.name)"
+      class="validation">
+      <small *ngIf="form.get(fieldFormConsts.email.name)?.errors?.required">
+        Required field
+      </small>
+      <small *ngIf="form.get(fieldFormConsts.email.name)?.errors?.email">
+        Incorrect email
+      </small>
+    </div>
+  </div>
+
+  <div
+    class="form-control"
+    [ngClass]="{invalid: checkValid(fieldFormConsts.password.name)}">
+    <label for="password">Password</label>
+    <input type="password" id="password" [formControlName]="fieldFormConsts.password.name">
+    <div
+      class="validation"
+      *ngIf="checkValid(fieldFormConsts.password.name)">
+      <small *ngIf="form.get(fieldFormConsts.password.name)?.errors?.required">
+        Required field
+      </small>
+      <small *ngIf="form.get(fieldFormConsts.password.name)?.errors?.minLength">
+        Пароль должен быть {{form.get(fieldFormConsts.password.name)?.errors?.minlength?.requiredLength}}
+        вы ввели {{form.get(fieldFormConsts.password.name)?.errors?.minlength?.actualLength}}
+      </small>
+    </div>
+  </div>
+
+  <button
+    class="btn btn-primary"
+    type="submit"
+    [disabled]="form.invalid || submitted">
+    Log in
+  </button>
+
 </form>
+
