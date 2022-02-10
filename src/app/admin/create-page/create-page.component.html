@@ -4,11 +4,11 @@
   <h1>Создание нового поста</h1>
 
   <div class="form-control"
-       [ngClass]="{invalid: validCheck(fieldFormConsts.title.name)}">
+       [ngClass]="{invalid: checkValid(fieldFormConsts.title.name)}">
     <label for="title">Название поста:</label>
-    <input id="title" type="text" formControlName="title">
-    <div *ngIf="validCheck(fieldFormConsts.title.name)" class="validation">
-      <small *ngIf="form.get('title')?.errors?.required">
+    <input id="title" type="text" [formControlName]="fieldFormConsts.title.name">
+    <div *ngIf="checkValid(fieldFormConsts.title.name)" class="validation">
+      <small *ngIf="form.get(fieldFormConsts.title.name)?.errors?.required">
         Введите название поста
       </small>
     </div>
@@ -20,12 +20,11 @@
   </div>
 
   <div class="form-control"
-       [ngClass]="{invalid: validCheck(fieldFormConsts.author.name)}"
-  >
+       [ngClass]="{invalid: checkValid(fieldFormConsts.author.name)}">
     <label for="author">Автор поста:</label>
-    <input id="author" type="text" formControlName="author">
-    <div *ngIf="validCheck(fieldFormConsts.author.name)" class="validation">
-      <small *ngIf="form.get('author')?.errors?.required">
+    <input id="author" type="text" [formControlName]="fieldFormConsts.author.name">
+    <div *ngIf="checkValid(fieldFormConsts.author.name)" class="validation">
+      <small *ngIf="form.get(fieldFormConsts.author.name)?.errors?.required">
         Введите автора поста
       </small>
     </div>

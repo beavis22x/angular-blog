@@ -1,29 +1,35 @@
 export interface User {
-  email: string
-  password: string
-  returnSecureToken?: boolean
+  email: string;
+  password: string;
+  returnSecureToken?: boolean;
 }
 
 export interface Post {
-  title: string
-  text: string
-  author: string
-  date: Date
-  id?: string
+  title: string;
+  text: string;
+  author: string;
+  date: Date;
+  id?: string;
 }
 
 export interface FbAuthResponse {
-  idToken: string,
-  expiresIn: string
+  displayName: string;
+  email: string;
+  expiresIn: string;
+  idToken: string;
+  kind: string;
+  localId: string;
+  refreshToken: string;
+  registered: boolean;
 }
 
 export interface FbCreateResponse {
-  name: string
+  name: string;
 }
 
 export interface FormConfig {
-  name: string,
-  nameField?: string,
+  name: string;
+  nameField?: string;
 }
 
 export interface FormConfigs {

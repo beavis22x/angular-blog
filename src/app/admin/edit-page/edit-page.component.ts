@@ -28,43 +28,53 @@ export class EditPageComponent implements OnInit, OnDestroy{
     private alertService: AlertService
   ) { }
 
-  ngOnInit(): void {
-    const postSubscr$ = this.route.params.pipe(
+  public ngOnInit(): void {
+    this.initEditPost();
+  }
+
+  private initEditPost(): void {
+    this.subscriptions.add(this.route.params.pipe(
       switchMap((params: Params) => {
         return this.postsService.getById(params['id']);
       }))
       .subscribe( (post: Post) => {
         this.post = post;
-        this.form = new FormGroup({
-          title: new FormControl(post.title, Validators.required),
-          text: new FormControl(post.text, Validators.required)
-        })
-        this.subscriptions.add(postSubscr$);
+        this.initForm(post);
+
         this.cd.markForCheck();
-      })
+      }));
   }
 
-  validCheck(fieldStr: string): boolean | undefined {
-    return (this.form.get(fieldStr)?.touched && this.form.get(fieldStr)?.invalid);
+  private initForm(post: Post): void {
+    this.form = new FormGroup({
+      title: new FormControl(post.title, Validators.required),
+      text: new FormControl(post.text, Validators.required)
+    })
   }
 
-  submit() {
-    if (this.form.invalid) { return }
+  public submit(): void {
+    if (this.form.invalid) {
+      return
+    }
 
     this.submitted = true;
-    const updSubscr$ = this.postsService.update({
+    this.subscriptions.add(this.postsService.update({
       ...this.post,
       text: this?.form?.value?.text,
       title: this?.form?.value?.title
     }).subscribe(() => {
       this.submitted = false;
       this.alertService.success('Пост был изменен');
-    })
-    this.subscriptions.add(updSubscr$);
+    }));
+
     this.cd.markForCheck();
   }
 
-  ngOnDestroy(): void {
+  public checkValid(fieldStr: string): boolean | undefined {
+    return (this.form.get(fieldStr)?.touched && this.form.get(fieldStr)?.invalid);
+  }
+
+  public ngOnDestroy(): void {
     this.subscriptions?.unsubscribe();
   }
 }

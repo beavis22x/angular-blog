@@ -24,11 +24,11 @@
       <td>
         <button class="btn btn-link open"
                 [routerLink]="[
-                routeConfig.adminPage.fullpath,
-                routeConfig.plainAdminPost.path,
-                post.id,
-                routeConfig.plainAdminEdit.path
-                 ]">
+                  routeConfig.adminPage.fullpath,
+                  routeConfig.plainAdminPost.path,
+                  post.id,
+                  routeConfig.plainAdminEdit.path
+                ]">
           Открыть
         </button>
         <a (click)="remove(post.id)">Удалить</a>

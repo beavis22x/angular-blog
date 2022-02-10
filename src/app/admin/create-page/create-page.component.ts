@@ -20,11 +20,13 @@ export class CreatePageComponent implements OnInit, OnDestroy{
 
   constructor(
     private readonly postsService: PostsService,
-    private alertService: AlertService
-  ) {
+    private alertService: AlertService) { }
+
+  public ngOnInit(): void {
+    this.formInit();
   }
 
-  ngOnInit() {
+  private formInit(): void {
     this.form = new FormGroup({
       title: new FormControl(null, Validators.required),
       text: new FormControl(null, Validators.required),
@@ -48,11 +50,11 @@ export class CreatePageComponent implements OnInit, OnDestroy{
     })
   }
 
-  validCheck(fieldStr: string): boolean | undefined {
-    return (this.form.get(fieldStr)?.touched && this.form.get(fieldStr)?.invalid)
+  public checkValid(fieldStr: string): boolean | undefined {
+    return (this.form.get(fieldStr)?.touched && this.form.get(fieldStr)?.invalid);
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy(): void {
       this.postCreateSub?.unsubscribe();
   }
 
