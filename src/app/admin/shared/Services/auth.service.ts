@@ -4,9 +4,9 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
-import { User } from '../../utils/interfaces/admin-panel.interfaces';
-import { environment } from '../../../environments/environment';
-import { EMAIL_NOT_FOUND, INVALID_PASSWORD } from '../../utils/constants/error.consts';
+import { User } from '../../../utils/interfaces/admin-panel.interfaces';
+import { environment } from '../../../../environments/environment';
+import { EMAIL_NOT_FOUND, INVALID_PASSWORD } from '../../../utils/constants/error.consts';
 
 @Injectable({providedIn: 'root'})
 export class AuthService {

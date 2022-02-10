@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { RouteConfigs } from '../../../../utils/interfaces/route.interfaces';
 
 import { ROUTE_CONFIGS } from '../../../../utils/constants/route.consts';
-import { AuthService } from '../../auth.service';
+import { AuthService } from '../../Services/auth.service';
 
 @Component({
   selector: 'app-admin-layout',

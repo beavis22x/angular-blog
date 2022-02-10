@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 
 import { catchError } from 'rxjs/operators';
-import { AuthService } from '../admin/shared/auth.service';
+import { AuthService } from '../admin/shared/Services/auth.service';
 import { ROUTE_CONFIGS } from '../utils/constants/route.consts';
 
 @Injectable()
