@@ -8,7 +8,17 @@ const author: FormConfig = {
   name: 'author'
 }
 
+const email: FormConfig = {
+  name: 'email'
+}
+
+const password: FormConfig = {
+  name: 'password'
+}
+
 export const FIELD_FORM_CONSTS: FormConfigs = {
   author,
   title,
+  email,
+  password
 }

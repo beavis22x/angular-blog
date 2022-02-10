@@ -2,7 +2,8 @@ import {RouteConfig, RouteConfigs} from '../interfaces/route.interfaces';
 
 const home: RouteConfig = {
   name: 'home',
-  path: ''
+  path: '',
+  fullpath: '/'
 }
 
 const postPage: RouteConfig = {

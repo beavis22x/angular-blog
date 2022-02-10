@@ -23,21 +23,27 @@ export class DashboardPageComponent implements OnInit, OnDestroy{
               private cd: ChangeDetectorRef
   ) { }
 
-  ngOnInit(): void {
-      this.postsSub = this.postsService.getAll().subscribe(posts => {
-         this.posts = posts;
-         this.cd.markForCheck()
-      })
+  public ngOnInit(): void {
+      this.postsInit();
+  }
+
+  private postsInit(): void {
+    this.postsSub = this.postsService.getAll().subscribe(posts => {
+      this.posts = posts;
+
+      this.cd.markForCheck();
+    })
   }
 
   public remove(id: string | undefined): void {
     this.deleteSub = this.postsService.remove(id).subscribe(posts => {
       this.posts = this.posts.filter(post => post.id != id)
+
       this.cd.markForCheck()
     })
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
       this.postsSub?.unsubscribe()
       this.deleteSub?.unsubscribe()
   }

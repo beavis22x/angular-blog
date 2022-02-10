@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
-import { Observable, Subject } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
-import { User } from '../../utils/interfaces/admin-panel.interfaces';
+import { FbAuthResponse, User } from '../../utils/interfaces/admin-panel.interfaces';
 import { environment } from '../../../environments/environment';
 import { EMAIL_NOT_FOUND, INVALID_PASSWORD } from '../../utils/constants/error.consts';
 
@@ -12,8 +12,7 @@ import { EMAIL_NOT_FOUND, INVALID_PASSWORD } from '../../utils/constants/error.c
 export class AuthService {
   public error$: Subject<string> = new Subject<string>();
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) { }
 
   get token(): string | null {
     const expDate = new Date(<string>localStorage.getItem('fb-token-expire'));
@@ -30,13 +29,13 @@ export class AuthService {
   public logIn(user: User): Observable<any> {
     user.returnSecureToken = true;
 
-    return this.http.post(
+    return this.http.post<FbAuthResponse | null>(
       `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`,
       user
     ).pipe(
       tap(this.setToken),
-      catchError(this.handleError.bind(this))
-    );
+      catchError(() => of(this.handleError.bind(this)))
+    )
   }
 
   public logOut(): void {
@@ -47,7 +46,7 @@ export class AuthService {
     return !!this.token;
   }
 
-   public handleError(error: HttpErrorResponse): any {
+   public handleError(error: HttpErrorResponse): void {
     const {message} = error?.error?.error;
 
      switch(message) {
@@ -60,10 +59,11 @@ export class AuthService {
      }
   }
 
-  private setToken(response: any): void {
-    if(response) {
-      const expiresDate = new Date(new Date().getTime() + Number(response.expiresIn) * 1000);
+  private setToken(response: FbAuthResponse | null): void {
 
+    if(response) {
+
+      const expiresDate = new Date(new Date().getTime() + Number(response.expiresIn) * 1000);
       localStorage.setItem('fb-token', response.idToken);
       localStorage.setItem('fb-token-expire', expiresDate.toString());
     } else {
