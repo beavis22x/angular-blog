@@ -5,6 +5,7 @@ import { FormConfigs, Post } from '../../utils/interfaces/admin-panel.interfaces
 import { PostsService } from '../../shared/components/posts.service';
 import { FIELD_FORM_CONSTS } from '../../utils/constants/form.consts';
 import { Subscription } from 'rxjs';
+import { AlertService } from '../shared/Services/alert.service';
 
 @Component({
   selector: 'app-create-page',
@@ -17,7 +18,10 @@ export class CreatePageComponent implements OnInit, OnDestroy{
   public postCreateSub!: Subscription;
   public fieldFormConsts: FormConfigs = FIELD_FORM_CONSTS;
 
-  constructor(private readonly postsService: PostsService) {
+  constructor(
+    private readonly postsService: PostsService,
+    private alertService: AlertService
+  ) {
   }
 
   ngOnInit() {
@@ -40,6 +44,7 @@ export class CreatePageComponent implements OnInit, OnDestroy{
 
     this.postCreateSub = this.postsService.create(post).subscribe(() => {
       this.form.reset();
+      this.alertService.success('Пост был создан');
     })
   }
 

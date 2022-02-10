@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { Post } from '../../utils/interfaces/admin-panel.interfaces';
 import { Subscription } from 'rxjs';
 
 import { PostsService } from '../../shared/components/posts.service';
+import { AlertService } from '../shared/Services/alert.service';
+import { Post } from '../../utils/interfaces/admin-panel.interfaces';
 import { RouteConfigs } from '../../utils/interfaces/route.interfaces';
 import { ROUTE_CONFIGS } from '../../utils/constants/route.consts';
 
@@ -20,20 +21,21 @@ export class DashboardPageComponent implements OnInit, OnDestroy{
   public routeConfig: RouteConfigs = ROUTE_CONFIGS;
 
   constructor(private readonly postsService: PostsService,
-              private cd: ChangeDetectorRef
+              private cd: ChangeDetectorRef,
+              private alertService: AlertService
   ) { }
 
   ngOnInit(): void {
       this.postsSub = this.postsService.getAll().subscribe(posts => {
          this.posts = posts;
-         this.cd.markForCheck()
+         this.cd.markForCheck();
       })
   }
 
   public remove(id: string | undefined): void {
     this.deleteSub = this.postsService.remove(id).subscribe(posts => {
-      this.posts = this.posts.filter(post => post.id != id)
-      this.cd.markForCheck()
+      this.posts = this.posts.filter(post => post.id != id);
+      this.alertService.warning('Пост был удален');
     })
   }
 
