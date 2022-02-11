@@ -20,9 +20,10 @@ export class PostPageComponent implements OnInit{
   constructor(
     private route: ActivatedRoute,
     private postService: PostsService
-  ) { }
+  ) {
+  }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.post$ = this.route.params
       .pipe(switchMap((params: Params) => {
         return this.postService.getById(params.id)
