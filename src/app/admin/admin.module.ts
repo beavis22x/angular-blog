@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -13,8 +14,9 @@ import { DashboardPageComponent } from './dashboard-page/dashboard-page.componen
 import { AlertComponent } from './shared/components/alert/alert.component';
 
 import { AuthGuardService } from './shared/Services/auth.guard.service';
-import { SearchPipe } from './shared/search.pipe';
 import { AlertService } from './shared/Services/alert.service';
+
+import { SearchPipe } from './shared/search.pipe';
 
 @NgModule({
   declarations: [

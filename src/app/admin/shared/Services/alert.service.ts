@@ -1,12 +1,10 @@
 import {Injectable} from '@angular/core';
+
 import {Subject} from 'rxjs';
 
-export type AlertType = 'success' | 'warning' | 'danger'
+import { Alert } from '../../../utils/interfaces/admin-panel.interfaces';
 
-export interface Alert {
-  type: AlertType
-  text: string
-}
+export type AlertType = 'success' | 'warning' | 'danger';
 
 @Injectable()
 export class AlertService {

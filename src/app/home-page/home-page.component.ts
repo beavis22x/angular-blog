@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+
 import { Observable } from 'rxjs';
 
-import { Post } from '../utils/interfaces/admin-panel.interfaces';
 import { PostsService } from '../shared/components/posts.service';
+
+import { Post } from '../utils/interfaces/admin-panel.interfaces';
 
 @Component({
   selector: 'app-home-page',
@@ -11,7 +13,7 @@ import { PostsService } from '../shared/components/posts.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePageComponent implements OnInit {
-  posts$!: Observable<Post[]>
+  public posts$!: Observable<Post[]>
 
   constructor(private postsService: PostsService) {
   }
