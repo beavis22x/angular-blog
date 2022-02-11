@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
-import { AuthService } from '../shared/auth.service';
+import { AuthService } from '../shared/Services/auth.service';
 import { FormConfigs, User } from '../../utils/interfaces/admin-panel.interfaces';
 import { RouteConfigs } from '../../utils/interfaces/route.interfaces';
 import { ROUTE_CONFIGS } from '../../utils/constants/route.consts';
-import { Subscription } from 'rxjs';
 import { FIELD_FORM_CONSTS } from '../../utils/constants/form.consts';
 
 @Component({
@@ -17,17 +17,18 @@ import { FIELD_FORM_CONSTS } from '../../utils/constants/form.consts';
 })
 export class LoginPageComponent implements OnInit, OnDestroy {
   public form!: FormGroup;
+  public routeConfig: RouteConfigs = ROUTE_CONFIGS;
   public submitted!: boolean;
   public message!: string;
   public subscriptions: Subscription = new Subscription();
-  public routeConfig: RouteConfigs = ROUTE_CONFIGS;
   public fieldFormConsts: FormConfigs = FIELD_FORM_CONSTS;
 
   constructor(
     public auth: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-  ) { }
+  ) {
+  }
 
   public ngOnInit(): void {
     this.initValidate();

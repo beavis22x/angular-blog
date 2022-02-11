@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { RouteConfigs } from '../../../../utils/interfaces/route.interfaces';
 
 import { ROUTE_CONFIGS } from '../../../../utils/constants/route.consts';
-import { AuthService } from '../../auth.service';
+import { AuthService } from '../../Services/auth.service';
 
 @Component({
   selector: 'app-admin-layout',
@@ -18,7 +18,8 @@ export class AdminLayoutComponent {
   constructor(
     private router: Router,
     public auth: AuthService
-  ) { }
+  ) {
+  }
 
   public logout(event: Event): void {
     event.preventDefault();

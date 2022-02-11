@@ -6,6 +6,7 @@ import { Subscription, switchMap } from 'rxjs';
 import { FormConfigs, Post } from '../../utils/interfaces/admin-panel.interfaces';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FIELD_FORM_CONSTS } from '../../utils/constants/form.consts';
+import { AlertService } from '../shared/Services/alert.service';
 
 @Component({
   selector: 'app-edit-page',
@@ -13,7 +14,7 @@ import { FIELD_FORM_CONSTS } from '../../utils/constants/form.consts';
   styleUrls: ['./edit-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EditPageComponent implements OnInit, OnDestroy{
+export class EditPageComponent implements OnInit, OnDestroy {
   public subscriptions: Subscription = new Subscription();
   public post!: Post;
   public submitted = false;
@@ -23,8 +24,10 @@ export class EditPageComponent implements OnInit, OnDestroy{
   constructor(
     private route: ActivatedRoute,
     private postsService: PostsService,
-    private cd: ChangeDetectorRef
-  ) { }
+    private cd: ChangeDetectorRef,
+    private alertService: AlertService
+  ) {
+  }
 
   public ngOnInit(): void {
     this.initEditPost();
@@ -35,7 +38,7 @@ export class EditPageComponent implements OnInit, OnDestroy{
       switchMap((params: Params) => {
         return this.postsService.getById(params['id']);
       }))
-      .subscribe( (post: Post) => {
+      .subscribe((post: Post) => {
         this.post = post;
         this.initForm(post);
 
@@ -62,6 +65,7 @@ export class EditPageComponent implements OnInit, OnDestroy{
       title: this?.form?.value?.title
     }).subscribe(() => {
       this.submitted = false;
+      this.alertService.success('Пост был изменен');
     }));
 
     this.cd.markForCheck();

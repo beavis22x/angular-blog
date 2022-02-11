@@ -4,9 +4,9 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of, Subject } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
-import { FbAuthResponse, User } from '../../utils/interfaces/admin-panel.interfaces';
-import { environment } from '../../../environments/environment';
-import { EMAIL_NOT_FOUND, INVALID_PASSWORD } from '../../utils/constants/error.consts';
+import { FbAuthResponse, User } from '../../../utils/interfaces/admin-panel.interfaces';
+import { environment } from '../../../../environments/environment';
+import { EMAIL_NOT_FOUND, INVALID_PASSWORD } from '../../../utils/constants/error.consts';
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
@@ -62,8 +62,8 @@ export class AuthService {
   private setToken(response: FbAuthResponse | null): void {
 
     if(response) {
-
       const expiresDate = new Date(new Date().getTime() + Number(response.expiresIn) * 1000);
+
       localStorage.setItem('fb-token', response.idToken);
       localStorage.setItem('fb-token-expire', expiresDate.toString());
     } else {

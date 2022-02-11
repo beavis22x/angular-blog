@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { Post } from '../../utils/interfaces/admin-panel.interfaces';
 import { Subscription } from 'rxjs';
 
 import { PostsService } from '../../shared/components/posts.service';
+import { AlertService } from '../shared/Services/alert.service';
+import { Post } from '../../utils/interfaces/admin-panel.interfaces';
 import { RouteConfigs } from '../../utils/interfaces/route.interfaces';
 import { ROUTE_CONFIGS } from '../../utils/constants/route.consts';
 
@@ -12,19 +13,22 @@ import { ROUTE_CONFIGS } from '../../utils/constants/route.consts';
   styleUrls: ['./dashboard-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DashboardPageComponent implements OnInit, OnDestroy{
+export class DashboardPageComponent implements OnInit, OnDestroy {
   public posts: Post[] = [];
   public postsSub!: Subscription;
   public deleteSub!: Subscription;
   public filterStr = '';
   public routeConfig: RouteConfigs = ROUTE_CONFIGS;
 
-  constructor(private readonly postsService: PostsService,
-              private cd: ChangeDetectorRef
-  ) { }
+  constructor(
+    private readonly postsService: PostsService,
+    private cd: ChangeDetectorRef,
+    private alertService: AlertService
+  ) {
+  }
 
   public ngOnInit(): void {
-      this.postsInit();
+    this.postsInit();
   }
 
   private postsInit(): void {
@@ -44,7 +48,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy{
   }
 
   public ngOnDestroy(): void {
-      this.postsSub?.unsubscribe()
-      this.deleteSub?.unsubscribe()
+    this.postsSub?.unsubscribe()
+    this.deleteSub?.unsubscribe()
   }
 }
