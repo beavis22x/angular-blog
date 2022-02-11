@@ -6,14 +6,16 @@ import { map } from 'rxjs/operators';
 import { FbCreateResponse, Post } from '../../utils/interfaces/admin-panel.interfaces';
 import { environment } from '../../../environments/environment';
 
-@Injectable({providedIn: 'root'})
+@Injectable({
+  providedIn: 'root'
+})
 export class PostsService {
   constructor(private http: HttpClient) {
   }
 
   create(post: Post): Observable<Post> {
-    return this.http.post(`${environment.fbDbUrl}/posts.json`, post)
-      .pipe(map((response: FbCreateResponse | any) => {
+    return this.http.post<FbCreateResponse>(`${environment.fbDbUrl}/posts.json`, post)
+      .pipe(map((response: FbCreateResponse) => {
         return {
           ...post,
           id: response.name,
@@ -40,7 +42,7 @@ export class PostsService {
 
   getById(id: string): Observable<Post> {
     return this.http.get<Post>(`${environment.fbDbUrl}/posts/${id}.json`)
-      .pipe(map((post: Post | any) => {
+      .pipe(map((post: Post) => {
         return {
           ...post,
           id,

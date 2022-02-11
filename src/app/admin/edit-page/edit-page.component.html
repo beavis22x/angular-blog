@@ -3,13 +3,13 @@
         (ngSubmit)="submit()">
     <div
       class="form-control"
-      [ngClass]="{invalid: validCheck(fieldFormConsts.title.name)}">
+      [ngClass]="{invalid: checkValid(fieldFormConsts.title.name)}">
       <label for="title">Название поста:</label>
-      <input id="title" type="text" formControlName="title">
+      <input id="title" type="text" [formControlName]="fieldFormConsts.title.name">
       <div
-        *ngIf="validCheck(fieldFormConsts.title.name)"
+        *ngIf="checkValid(fieldFormConsts.title.name)"
         class="validation">
-        <small *ngIf="form.get('title')?.errors?.required">
+        <small *ngIf="form.get(fieldFormConsts.title.name)?.errors?.required">
           Введите название поста
         </small>
       </div>

@@ -18,7 +18,8 @@ export class AdminLayoutComponent {
   constructor(
     private router: Router,
     public auth: AuthService
-  ) { }
+  ) {
+  }
 
   public logout(event: Event): void {
     event.preventDefault();

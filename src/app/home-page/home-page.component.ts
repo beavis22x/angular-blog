@@ -16,7 +16,7 @@ export class HomePageComponent implements OnInit {
   constructor(private postsService: PostsService) {
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.posts$ = this.postsService.getAll();
   }
 }
