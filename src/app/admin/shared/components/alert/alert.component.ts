@@ -13,7 +13,6 @@ import { Alert } from '../../../../utils/interfaces/admin-panel.interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AlertComponent implements OnInit, OnDestroy {
-
   @Input() delay = 3000;
 
   public text!: string;
@@ -30,9 +29,9 @@ export class AlertComponent implements OnInit, OnDestroy {
   }
 
   public initAlert(): void {
-    this.alertSubs.add(this.alertService.alert$.subscribe((alert: Alert) => {
-      this.text = alert.text;
-      this.type = alert.type;
+    this.alertSubs.add(this.alertService.alert$.subscribe(({text, type}: Alert) => {
+      this.text = text;
+      this.type = type;
 
       const timeout = setTimeout(() => {
         clearTimeout(timeout)

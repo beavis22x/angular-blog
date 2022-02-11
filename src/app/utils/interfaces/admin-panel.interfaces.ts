@@ -38,10 +38,6 @@ export interface FormConfigs {
   [key: string]: FormConfig;
 }
 
-export interface AlertMessages {
-  [key: string]: string;
-}
-
 export interface Alert {
   type: AlertType;
   text: string;

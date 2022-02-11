@@ -10,8 +10,9 @@ import { AuthService } from '../shared/Services/auth.service';
 import { FormConfigs, User } from '../../utils/interfaces/admin-panel.interfaces';
 import { RouteConfigs } from '../../utils/interfaces/route.interfaces';
 
+import { FIELD_FORM_ENUM } from '../../utils/enum/form.enum';
+
 import { ROUTE_CONFIGS } from '../../utils/constants/route.consts';
-import { FIELD_FORM_CONSTS } from '../../utils/constants/form.consts';
 
 @Component({
   selector: 'app-login-page',
@@ -21,11 +22,11 @@ import { FIELD_FORM_CONSTS } from '../../utils/constants/form.consts';
 })
 export class LoginPageComponent implements OnInit, OnDestroy {
   public form!: FormGroup;
-  public routeConfig: RouteConfigs = ROUTE_CONFIGS;
   public submitted!: boolean;
   public message!: string;
   public subscriptions: Subscription = new Subscription();
-  public fieldFormConsts: FormConfigs = FIELD_FORM_CONSTS;
+  public routeConfig: RouteConfigs = ROUTE_CONFIGS;
+  public fieldFormEnum = FIELD_FORM_ENUM;
 
   constructor(
     public auth: AuthService,

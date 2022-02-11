@@ -5,11 +5,12 @@ import { Subscription } from 'rxjs';
 import { PostsService } from '../../shared/components/posts.service';
 import { AlertService } from '../shared/Services/alert.service';
 
-import { AlertMessages, Post } from '../../utils/interfaces/admin-panel.interfaces';
+import { Post } from '../../utils/interfaces/admin-panel.interfaces';
 import { RouteConfigs } from '../../utils/interfaces/route.interfaces';
 
+import { ALERT_MESSAGE_ENUM } from '../../utils/enum/alert-messages.enum';
+
 import { ROUTE_CONFIGS } from '../../utils/constants/route.consts';
-import { ALERT_MESSAGE } from '../../utils/constants/alert-messages.consts';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -22,7 +23,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   public subscriptions: Subscription = new Subscription();
   public filterStr = '';
   public routeConfig: RouteConfigs = ROUTE_CONFIGS;
-  public alMessages: AlertMessages = ALERT_MESSAGE;
+  public alMessages = ALERT_MESSAGE_ENUM;
 
   constructor(
     private readonly postsService: PostsService,

@@ -8,10 +8,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PostsService } from '../../shared/components/posts.service';
 import { AlertService } from '../shared/Services/alert.service';
 
-import { FormConfigs, Post, AlertMessages } from '../../utils/interfaces/admin-panel.interfaces';
+import { FormConfigs, Post } from '../../utils/interfaces/admin-panel.interfaces';
 
-import { FIELD_FORM_CONSTS } from '../../utils/constants/form.consts';
-import { ALERT_MESSAGE } from '../../utils/constants/alert-messages.consts';
+import { ALERT_MESSAGE_ENUM } from '../../utils/enum/alert-messages.enum';
+
+import { FIELD_FORM_ENUM } from '../../utils/enum/form.enum';
 
 @Component({
   selector: 'app-edit-page',
@@ -24,8 +25,8 @@ export class EditPageComponent implements OnInit, OnDestroy {
   public post!: Post;
   public submitted = false;
   public form!: FormGroup;
-  public fieldFormConsts: FormConfigs = FIELD_FORM_CONSTS;
-  public alMessages: AlertMessages = ALERT_MESSAGE;
+  public fieldFormEnum = FIELD_FORM_ENUM;
+  public alMessages = ALERT_MESSAGE_ENUM;
 
   constructor(
     private route: ActivatedRoute,

@@ -12,7 +12,6 @@ import { ROUTE_CONFIGS } from '../../../utils/constants/route.consts';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostComponent {
-
   @Input() post!: Post;
 
   public routeConf: RouteConfigs = ROUTE_CONFIGS;
