@@ -7,8 +7,9 @@ import { DashboardPageComponent } from './dashboard-page/dashboard-page.componen
 import { CreatePageComponent } from './create-page/create-page.component';
 import { EditPageComponent } from './edit-page/edit-page.component';
 
+import { AuthGuardService } from './shared/Services/auth.guard.service';
+
 import { ROUTE_CONFIGS } from '../utils/constants/route.consts';
-import { AuthGuardService } from './shared/auth.guard.service';
 
 const routes: Routes = [
   {

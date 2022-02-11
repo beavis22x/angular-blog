@@ -11,6 +11,11 @@ const postPage: RouteConfig = {
   path: 'post/:id'
 }
 
+const homePost: RouteConfig = {
+  name: 'home-post',
+  path: '/post'
+}
+
 const adminPage: RouteConfig = {
   name: 'admin-page',
   path: 'admin',
@@ -66,4 +71,5 @@ export const ROUTE_CONFIGS: RouteConfigs = {
   adminEdit,
   plainAdminPost,
   plainAdminEdit,
+  homePost,
 }

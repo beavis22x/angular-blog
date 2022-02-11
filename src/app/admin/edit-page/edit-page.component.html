@@ -1,15 +1,14 @@
 <div *ngIf="form; else loading">
   <form [formGroup]="form"
         (ngSubmit)="submit()">
-    <div
-      class="form-control"
-      [ngClass]="{invalid: checkValid(fieldFormConsts.title.name)}">
+    <div class="form-control"
+         [ngClass]="{invalid: checkValid(fieldFormEnum.title)}">
       <label for="title">Название поста:</label>
-      <input id="title" type="text" [formControlName]="fieldFormConsts.title.name">
+      <input id="title" type="text" [formControlName]="fieldFormEnum.title">
       <div
-        *ngIf="checkValid(fieldFormConsts.title.name)"
+        *ngIf="checkValid(fieldFormEnum.title)"
         class="validation">
-        <small *ngIf="form.get(fieldFormConsts.title.name)?.errors?.required">
+        <small *ngIf="form.get(fieldFormEnum.title)?.errors?.required">
           Введите название поста
         </small>
       </div>

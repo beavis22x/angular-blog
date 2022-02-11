@@ -1,3 +1,5 @@
+import { AlertType } from '../../admin/shared/Services/alert.service';
+
 export interface User {
   email: string;
   password: string;
@@ -34,4 +36,9 @@ export interface FormConfig {
 
 export interface FormConfigs {
   [key: string]: FormConfig;
+}
+
+export interface Alert {
+  type: AlertType;
+  text: string;
 }
