@@ -11,19 +11,17 @@ export class AuthGuardService implements CanActivate {
   constructor(
     private auth: AuthService,
     private router: Router
-  ) {
-  }
+  ) { }
 
-  public  canActivate(
+  public canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.auth.isAuthenticated()) {
-      return true;
-    } else {
-      this.redirect();
-      return false;
+    if(!this.auth.isAuthenticated()) {
+      this.redirect()
     }
+
+     return this.auth.isAuthenticated()
   }
 
   private redirect(): void {
